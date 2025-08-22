@@ -1,0 +1,20 @@
+tensorflow
+pandas
+gdown
+dvc
+mlflow
+notebook
+numpy
+matplotlib
+seaborn
+python-box
+pyyaml
+tqdm
+ensure
+joblib
+types-pyyaml
+scipy
+flask
+flask-cors
+pyarrow   # let pip choose a compatible version
+-e .
