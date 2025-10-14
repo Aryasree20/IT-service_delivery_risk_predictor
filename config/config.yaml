@@ -1,0 +1,27 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://drive.google.com/file/d/1qTNNeyhbEnkQ3tkreL3IkdvfeTFnJ1Rb/view?usp=drive_link
+  local_data_file: artifacts/data_ingestion/data.csv
+
+eda:
+  root_dir: artifacts/eda
+  data_file: artifacts/data_ingestion/data.csv
+  reports_dir: artifacts/eda/reports
+  plots_dir: artifacts/eda/plots
+
+data_preprocessing:
+  root_dir: artifacts/data_preprocessing
+  raw_data_path: artifacts/data_ingestion/data.csv   
+  pickle_save: artifacts/data_preprocessing/pickle
+
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  processed_data: artifacts/data_preprocessing/pickle
+  reports_dir: artifacts/model_trainer/reports
+  plots_dir: artifacts/model_trainer/plots
+  best_model_path: artifacts/model_trainer/best_model.joblib
+
