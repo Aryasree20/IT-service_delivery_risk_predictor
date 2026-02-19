@@ -1,0 +1,125 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/risk_predictor/pipeline/stage_01_dataingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 486e0a9f1c1b79a1b6e294b86390597a
+      size: 1192
+    - path: src/risk_predictor/pipeline/stage_01_dataingestion.py
+      hash: md5
+      md5: 0a630b906035246bfaa9165a2acbe16d
+      size: 868
+    outs:
+    - path: artifacts/data_ingestion/data.csv
+      hash: md5
+      md5: 8a491d6d76374e80e83c349a5d632005
+      size: 2904699
+  data_preprocessing:
+    cmd: python src/risk_predictor/pipeline/stage_02_data_preprocessing.py
+    deps:
+    - path: artifacts/data_ingestion/data.csv
+      hash: md5
+      md5: 8a491d6d76374e80e83c349a5d632005
+      size: 2904699
+    - path: config/config.yaml
+      hash: md5
+      md5: 486e0a9f1c1b79a1b6e294b86390597a
+      size: 1192
+    - path: src/risk_predictor/pipeline/stage_02_data_preprocessing.py
+      hash: md5
+      md5: e560351de0ddf258f52151a2ecdf609c
+      size: 1503
+    outs:
+    - path: artifacts/data_preprocessing/pickle/X_test.joblib
+      hash: md5
+      md5: 36e95b3b90144a7840ec5eeb7f3b89d7
+      size: 480241
+    - path: artifacts/data_preprocessing/pickle/X_train.joblib
+      hash: md5
+      md5: c3b25c64625f2db1c3d9efca7427c056
+      size: 4833313
+    - path: artifacts/data_preprocessing/pickle/y_test.joblib
+      hash: md5
+      md5: 245261c5b69ab23f46528c7a1f02b060
+      size: 240857
+    - path: artifacts/data_preprocessing/pickle/y_train.joblib
+      hash: md5
+      md5: 08ca0ba5ae2cfa75b6bec7463b159b59
+      size: 806303
+  model_trainer:
+    cmd: python src/risk_predictor/pipeline/stage_03_model_trainer.py
+    deps:
+    - path: artifacts/data_preprocessing/pickle/X_train.joblib
+      hash: md5
+      md5: c3b25c64625f2db1c3d9efca7427c056
+      size: 4833313
+    - path: artifacts/data_preprocessing/pickle/y_train.joblib
+      hash: md5
+      md5: 08ca0ba5ae2cfa75b6bec7463b159b59
+      size: 806303
+    - path: config/config.yaml
+      hash: md5
+      md5: 486e0a9f1c1b79a1b6e294b86390597a
+      size: 1192
+    - path: params.yaml
+      hash: md5
+      md5: 2b800f3d061486794718f4fd22f67103
+      size: 358
+    - path: src/risk_predictor/pipeline/stage_03_model_trainer.py
+      hash: md5
+      md5: 6e8655153ce249f3e0d20c82017bf63e
+      size: 3892
+    outs:
+    - path: artifacts/model_trainer/best_model.joblib
+      hash: md5
+      md5: 3abd8b65e75021b8b30bb5732f323c4d
+      size: 2318198
+    - path: artifacts/model_trainer/plots
+      hash: md5
+      md5: 996d2f77a51e7d7b9555f620cecb81fc.dir
+      size: 344298
+      nfiles: 12
+    - path: artifacts/model_trainer/reports
+      hash: md5
+      md5: 9c526f8f59be17588368dea1720fa337.dir
+      size: 8864
+      nfiles: 12
+  model_evaluation:
+    cmd: python src/risk_predictor/pipeline/stage_04_model_evaluation.py
+    deps:
+    - path: artifacts/data_preprocessing/pickle/X_test.joblib
+      hash: md5
+      md5: 36e95b3b90144a7840ec5eeb7f3b89d7
+      size: 480241
+    - path: artifacts/data_preprocessing/pickle/y_test.joblib
+      hash: md5
+      md5: 245261c5b69ab23f46528c7a1f02b060
+      size: 240857
+    - path: artifacts/model_trainer/best_model.joblib
+      hash: md5
+      md5: 3abd8b65e75021b8b30bb5732f323c4d
+      size: 2318198
+    - path: config/config.yaml
+      hash: md5
+      md5: 486e0a9f1c1b79a1b6e294b86390597a
+      size: 1192
+    - path: params.yaml
+      hash: md5
+      md5: 2b800f3d061486794718f4fd22f67103
+      size: 358
+    - path: src/risk_predictor/pipeline/stage_04_model_evaluation.py
+      hash: md5
+      md5: 2aded6c3e4327dcce0495afe23683970
+      size: 930
+    outs:
+    - path: artifacts/model_evaluation/metrics.json
+      hash: md5
+      md5: 5ca9c52c4d02f09d4bc69ceabf3e36d4
+      size: 125
+    - path: artifacts/model_evaluation/plots
+      hash: md5
+      md5: de1cda9703afeded8f545c242451285e.dir
+      size: 30215
+      nfiles: 1

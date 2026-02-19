@@ -81,7 +81,7 @@ class DataPreprocessing:
         """
         Saves the processed train and test datasets as joblib files
         """
-        logger.info("💾 Saving train and test datasets as joblib files")
+        logger.info("Saving train and test datasets as joblib files")
         pickle_save = self.config.pickle_save
         os.makedirs(pickle_save, exist_ok=True)
 

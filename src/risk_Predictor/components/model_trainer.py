@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings( "ignore",category=UserWarning,message="pkg_resources is deprecated as an API")
 import os, json, joblib
 import numpy as np
 import pandas as pd
@@ -20,6 +22,8 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from xgboost import XGBClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import StratifiedKFold, RandomizedSearchCV
+from collections import Counter
 from risk_predictor import logger
 from risk_predictor.entity.config_entity import  ModelTrainerConfig
 from pathlib import Path
@@ -59,11 +63,11 @@ class ModelTrainer:
                 }
             },
             "XGBoost": {
-                "model": XGBClassifier(eval_metric='logloss'),
+                "model": XGBClassifier(eval_metric='logloss',objective="multi:softmax", num_class=3),
                 "params": {
-                    'n_estimators': [100, 200],
+                    'n_estimators': [100, 200, 300],
                     'learning_rate': [0.05, 0.1],
-                    'max_depth': [3, 5]
+                    'max_depth': [3, 5, 6]
                 }
             },
             "AdaBoost": {
@@ -176,7 +180,7 @@ class ModelTrainer:
 
             logger.info(f"{name} → Accuracy={results[name]['accuracy']}, Precision={results[name]['precision']:.2f}, Recall={results[name]['recall']:.2f}, F1={results[name]['f1']:.2f}")
 
-            if results[name]["f1"] < 0.99 :
+            if results[name]["f1"] !=1 :
                 if results[name]["f1"] > best_f1:
                         best_f1 = results[name]["f1"]
                         best_precision = results[name]['precision']

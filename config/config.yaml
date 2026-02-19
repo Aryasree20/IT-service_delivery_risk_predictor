@@ -24,4 +24,11 @@ model_trainer:
   reports_dir: artifacts/model_trainer/reports
   plots_dir: artifacts/model_trainer/plots
   best_model_path: artifacts/model_trainer/best_model.joblib
-
+  
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  X_test_path: artifacts/data_preprocessing/pickle/X_test.joblib
+  y_test_path: artifacts/data_preprocessing/pickle/y_test.joblib
+  model_path: artifacts/model_trainer/best_model.joblib
+  plots_dir: artifacts/model_evaluation/plots
+  metric_file_name: artifacts/model_evaluation/metrics.json
