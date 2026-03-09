@@ -3,7 +3,7 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://drive.google.com/file/d/1qTNNeyhbEnkQ3tkreL3IkdvfeTFnJ1Rb/view?usp=drive_link
+  source_URL: "https://drive.google.com/file/d/1kYFwueR5FKjDLMiSBmIS_FN-cnfDZ3-g/view?usp=drive_link"
   local_data_file: artifacts/data_ingestion/data.csv
 
 eda:
