@@ -1,4 +1,4 @@
-# End_to-End_IT_Services_Delivery_RiskPredictor_using_MLFlow_DVC_CICD_Pipeline
+P# End_to-End_IT_Services_Delivery_RiskPredictor_using_MLFlow_DVC_CICD_Pipeline
 
 
 ## 🎯 Objective
@@ -94,6 +94,8 @@ The workflow integrates:
          - AmazonEC2FullAccess
          - AmazonEC2ContainerRegistryFullAccess
          - Secured AWS access keys and settings through GitHub Secrets
+
+         700389319172.dkr.ecr.ap-southeast-2.amazonaws.com/itriskpredictor
 
 
   ### 6️⃣ Web Application (Flask)
